@@ -4,9 +4,9 @@
 下記のセットアップ作業を済ませてください<br>
 <br>
 ●yt-dlpの導入<br>
-winget install yt-dlp
-
-
+winget install yt-dlp<br>
+<br>
+<br>
 ●mkvtoolnixの導入<br>
 mkdir "%appdata%\convert_work"<br>
 cd /d "%appdata%\convert_work"<br>
