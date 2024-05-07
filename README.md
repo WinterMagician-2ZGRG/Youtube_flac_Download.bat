@@ -24,5 +24,14 @@ setx /M path "%path%;C:\Program Files\MKVToolNix"<br>
 <br><br>
 
 # つかいかた
-● batをダウンロードして実行する<br>
-https://github.com/WinterMagician-2ZGRG/Youtube_flac_Download.bat/archive/refs/heads/main.zip
+① batをダウンロード<br>
+https://github.com/WinterMagician-2ZGRG/Youtube_flac_Download.bat/archive/refs/heads/main.zip<br>
+<br>
+② Youtubeの動画URLを用意する<br>
+下記の形式であることを確認<br>
+https://www.youtube.com/watch?v=dQw4w9WgXcQ<br>
+※Playlist等のURLは使えません。動画単体のURLを用意してください。<br>
+<br>
+③ 最新版のbatをクリックして実行<br>
+<br>
+④ ポップアップ表示される入力ウィンドウにURLを貼り付けて処理させる<br>
