@@ -7,6 +7,10 @@
 winget install yt-dlp<br>
 <br>
 <br>
+●ffmpegの導入<br>
+winget install ffmpeg
+<br>
+<br>
 ●mkvtoolnixの導入<br>
 mkdir "%appdata%\convert_work"<br>
 cd /d "%appdata%\convert_work"<br>
