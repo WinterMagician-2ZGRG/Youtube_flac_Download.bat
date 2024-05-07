@@ -1,8 +1,9 @@
 # Youtube_flac_Download.bat
 <br>
 <br>
-下記のセットアップ作業を済ませてください<br>
-<br>
+管理者実行で起動したコマンドプロンプトにて下記のコマンドを実行し、<br>
+一通りのセットアップ作業を済ませてください<br>
+<br><br>
 ● yt-dlpの導入<br>
 winget install yt-dlp<br>
 <br>
