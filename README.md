@@ -7,7 +7,7 @@
 winget install yt-dlp<br>
 <br>
 <br>
-●ffmpegの導入<br>
+●ffmpegの導入(yt-dlp導入時に一緒にInstallした場合は実行不要)<br>
 winget install ffmpeg
 <br>
 <br>
