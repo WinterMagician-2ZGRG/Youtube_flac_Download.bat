@@ -20,4 +20,9 @@ curl -OL "https://mkvtoolnix.download/windows/releases/84.0/mkvtoolnix-64-bit-84
 <br>
 ●mkvtoolnixをPath(環境変数)へ追記<br>
 setx /M path "%path%;C:\Program Files\MKVToolNix"<br>
+<br><br>
+<br><br>
 
+[h]つかいかた
+●batをダウンロードして実行する<br>
+https://github.com/WinterMagician-2ZGRG/Youtube_flac_Download.bat/archive/refs/heads/main.zip
