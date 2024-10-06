@@ -36,3 +36,9 @@ https://www.youtube.com/watch?v=dQw4w9WgXcQ<br>
 ③ 最新版のbatをクリックして実行<br>
 <br>
 ④ ポップアップ表示される入力ウィンドウにURLを貼り付けて処理させる<br>
+<br><br>
+
+# 補足
+● 403を吐いて処理が止まる場合は下記コマンドを実行してyt-dlpを更新すること<br>
+yt-dlp -U
+<br>
