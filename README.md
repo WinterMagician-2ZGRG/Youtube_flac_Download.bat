@@ -9,11 +9,11 @@ winget install yt-dlp<br>
 <br>
 <br>
 ● ffmpegの導入(yt-dlp導入時に一緒にInstallした場合は実行不要)<br>
-winget install ffmpeg
+winget install ffmpeg<br>
 <br>
 <br>
 ● mkvtoolnixの導入(不要になりました)<br>
-~~
+<del>
 mkdir "%appdata%\convert_work"<br>
 cd /d "%appdata%\convert_work"<br>
 curl -OL "https://mkvtoolnix.download/windows/releases/84.0/mkvtoolnix-64-bit-84.0-setup.exe"<br>
@@ -24,7 +24,7 @@ curl -OL "https://mkvtoolnix.download/windows/releases/84.0/mkvtoolnix-64-bit-84
 setx /M path "%path%;C:\Program Files\MKVToolNix"<br>
 <br><br>
 <br><br>
-~~
+</del> 
 
 # つかいかた
 ① batをダウンロード<br>
