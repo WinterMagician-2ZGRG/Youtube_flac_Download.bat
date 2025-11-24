@@ -11,6 +11,7 @@ REM 20240507 v1.2 誤記修正
 REM 20240507 v1.3 禁止記号の置換処理を追加
 REM 20240507 v1.4 置換処理する記号に＆と＊を追加
 REM 20240508 v1.5 置換処理する記号に；を追加、前半置換処理のコードを一部修正
+REM 20241006 v1.6 yt-dlpによるDL時にリトライ処理を追加、WebM非対応動画のm4aのダウンロードに対応
 
 
 
@@ -18,8 +19,7 @@ REM 20240508 v1.5 置換処理する記号に；を追加、前半置換処理のコードを一部修正
 REM ================================
 REM 環境固有値 設定箇所
 REM ================================
-rem set work_dir=%USERPROFILE%\Music
-set work_dir=O:\06_Youtube\Music
+set work_dir=%USERPROFILE%\Music
 
 REM wemM取得失敗時リトライ回数
 set RetryMax=5

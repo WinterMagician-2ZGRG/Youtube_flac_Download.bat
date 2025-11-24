@@ -11,6 +11,7 @@ REM 20240507 v1.2 誤記修正
 REM 20240507 v1.3 禁止記号の置換処理を追加
 REM 20240507 v1.4 置換処理する記号に＆と＊を追加
 REM 20240508 v1.5 置換処理する記号に；を追加、前半置換処理のコードを一部修正
+REM 20241006 v1.6 yt-dlpによるDL時にリトライ処理を追加、WebM非対応動画のm4aのダウンロードに対応
 
 
 
@@ -18,8 +19,7 @@ REM 20240508 v1.5 置換処理する記号に；を追加、前半置換処理のコードを一部修正
 REM ================================
 REM 環境固有値 設定箇所
 REM ================================
-rem set work_dir=%USERPROFILE%\Music
-set work_dir=O:\06_Youtube\Music
+set work_dir=%USERPROFILE%\Music
 
 REM wemM取得失敗時リトライ回数
 set RetryMax=5
@@ -28,15 +28,23 @@ set RetryMax=5
 
 echo ================================
 echo 動画URLを入力
-for /f "usebackq" %%f in (`mshta vbscript:execute("Dim input:input=InputBox(""動画URLを入力してください""):CreateObject(""Scripting.FileSystemObject"").GetStandardStream(1).WriteLine(input):Close"^)`) do (
-set yt_url_tmp=%%f
-set yt_url="!yt_url_tmp!"
+
+REM --- PowerShell の InputBox で URL を取得（VBScript 非依存版）---
+for /f "usebackq delims=" %%f in (`
+  powershell -NoProfile -Command "Add-Type -AssemblyName Microsoft.VisualBasic; [Microsoft.VisualBasic.Interaction]::InputBox('YouTube の動画 URL を入力してください。','動画URL入力','')"
+`) do (
+  set "yt_url_tmp=%%f"
 )
 
-set yt_ID=!yt_url_tmp:https://www.youtube.com/watch?v=!
-set yt_ID=%yt_ID:~1%
+REM 入力された URL を変数に格納
+set "yt_url=%yt_url_tmp%"
 
-if %yt_url%=="" (
+REM YouTube の動画ID部分だけを抽出
+REM 例: https://www.youtube.com/watch?v=ABCDEFG → ABCDEFG
+set "yt_ID=%yt_url_tmp:https://www.youtube.com/watch?v=%"
+
+REM 何も入力されていない場合のチェック
+if "%yt_url%"=="" (
   echo 動画URLが入力されませんでした。バッチ処理を終了します
   pause
   exit /b
@@ -81,7 +89,13 @@ echo 「"！　|　?　/　:　<　>　*　＆"」置換処理
 
 
 
-REM 「&」を置換
+echo 「｜」を置換
+set "yt_title=!yt_title:|=｜!"
+
+
+
+
+echo 「＆」を置換
 for /f "delims=^& tokens=1,2" %%k in ("%yt_title%") do ( set CC=%%k& set DD=%%l)
 set pre_char=%cc%
 set post_char=＆%dd%
@@ -94,7 +108,7 @@ if "!post_char!"=="＆" (
 
 
 
-REM 「*」を置換
+echo 「＊」を置換
 for /f "delims=* tokens=1,2" %%a in ("%yt_title%") do ( set AA=%%a& set BB=%%b)
 set pre_char2=%aa%
 set post_char2=＊%bb%
@@ -107,9 +121,8 @@ if "!post_char2!"=="＊" (
 
 
 
-REM その他置換
+echo その他置換
 set "yt_title=!yt_title:;=；!"
-set "yt_title=!yt_title:|=｜!"
 set "yt_title=!yt_title:?=？!"
 set "yt_title=!yt_title:/=／!"
 set "yt_title=!yt_title::=：!"
@@ -234,7 +247,8 @@ if %WebM%==1 (
     color 0A
     echo ================================
     echo WebM → opus抽出
-    mkvextract "%yt_title%.webm" tracks 0:"%yt_title%.opus"
+    ffmpeg -i "%yt_title%.webm" -vn -acodec copy "%yt_title%.opus"
+    REM mkvextract "%yt_title%.webm" tracks 0:"%yt_title%.opus"
 )
 
 
